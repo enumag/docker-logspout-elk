@@ -8,14 +8,14 @@ services:
     links:
       - logstash
     volumes:
-      - '/var/run/docker.sock:/tmp/docker.sock'
+      - /var/run/docker.sock:/tmp/docker.sock
 
   logstash:
     build:
         context: logstash
     environment:
       - LOGSPOUT=ignore
-      - DROP_NON_JSON=true
+      - DROP_NON_JSON=false
       - STDOUT=true
     links:
       - elasticsearch
@@ -27,10 +27,12 @@ services:
     links:
       - elasticsearch
     ports:
-      - '5601:5601'
+      - 5601:5601
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    volumes:
+      - ./elasticsearch-data:/usr/share/elasticsearch/data
     environment:
       - LOGSPOUT=ignore
 
