@@ -37,7 +37,7 @@ logstash_1       |           "message" => "This is my log message"
 logstash_1       | }
 ```
 
-This message shoud be also stored in Elasticsearch and visible in Kibana - visit https://localhost:5601, click on **Create** button and go to **Discover** tab.
+This message shoud be also stored in Elasticsearch and visible in Kibana - visit http://localhost:5601, click on **Create** button and go to **Discover** tab.
 
 ![Choose index pattern in Kibana](http://www.ludekvesely.cz/content/images/2016/04/kibana-start-pattern.png)
 

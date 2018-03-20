@@ -11,16 +11,17 @@ services:
       - '/var/run/docker.sock:/tmp/docker.sock'
 
   logstash:
-    image: ludekvesely/logstash-json
+    build:
+        context: logstash
     environment:
       - LOGSPOUT=ignore
-      - DROP_NON_JSON=false
+      - DROP_NON_JSON=true
       - STDOUT=true
     links:
       - elasticsearch
 
   kibana:
-    image: kibana
+    image: docker.elastic.co/kibana/kibana:6.2.2
     environment:
       - LOGSPOUT=ignore
     links:
@@ -29,7 +30,7 @@ services:
       - '5601:5601'
 
   elasticsearch:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
     environment:
       - LOGSPOUT=ignore
 
